@@ -2,10 +2,10 @@ server <- function(input, output, session){
   
   connection<-connect_sqlite(auto_disconnect = F)
   create_schema("notes", connection)
-  db.write_table(connection, schema = "notes", table = "scroll_demo", demo_notes)
+  db.write_table(connection, schema = "notes", table = "markdown_demo", markdown_notes)
   
   callModule(module = shinynotes, 
-             id = "Package",
+             id = "Markdown",
              style_options = reactive({list(
                "type" = input$note_style, 
                "header" = list("color" = input$header_color),
@@ -21,10 +21,10 @@ server <- function(input, output, session){
                  "border_width" = paste0(input$border_width, "px")
                  )
              )}),
-             group_column = "package",
+             group_column = "formatting",
              selected_group = reactive(input$note_group),
-             group_options = c("shiny", "shinyWidgets", "dplyr"),
-             table_id = list(table = "scroll_demo", schema = "notes"),
+             group_options = c("markdown"),
+             table_id = list(table = "markdown_demo", schema = "notes"),
              db_conn = connection
   )
   

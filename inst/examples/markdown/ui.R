@@ -5,17 +5,18 @@ ui <- fixedPage(
       sidebarPanel = sidebarPanel(
         width = 5,
         radioGroupButtons("note_group", label = "Note Group:", 
-                          choices = c("shiny", "shinyWidgets", "dplyr"), selected = "shiny",
+                          choices = c("markdown"), selected = "markdown",
                           status = "primary",
                           justified = T
         ),
+        
         fluidRow(
           column(6, align = "center",
                  awesomeRadio(
                    inputId = "note_style",
                    label = "Style",
                    choices = c("bullets", "paragraph"),
-                   selected = "bullets",
+                   selected = "paragraph",
                    inline = T,
                    status = "primary", 
                    checkbox = FALSE, 
@@ -38,7 +39,7 @@ ui <- fixedPage(
           column(6,
                  noUiSliderInput(
                    inputId = "height", label = "Max Panel Height:",
-                   min = 1, max = 2000, value = 600,
+                   min = 1, max = 2000, value = 800,
                    color = "#96b8d5",
                    format = wNumbFormat(decimals = 0, suffix = "px"),
                    width = "100%"
@@ -62,7 +63,7 @@ ui <- fixedPage(
           column(6,
                  noUiSliderInput(
                    inputId = "width", label = "Panel Width:",
-                   min = 1, max = 100, value = 90,
+                   min = 1, max = 100, value = 100,
                    color = "#96b8d5",
                    format = wNumbFormat(decimals = 0, suffix = "%"),
                    width = "100%"
@@ -96,7 +97,7 @@ ui <- fixedPage(
           options = list(maxItems = 1, create = F, placeholder = 'Select a status...')
         )
       ),
-      mainPanel = column(7, shinynotesUI('Package'))
+      mainPanel = column(7, shinynotesUI('Markdown'))
     )
   )
 )
